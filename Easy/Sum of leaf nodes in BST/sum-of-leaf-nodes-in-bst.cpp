@@ -37,23 +37,22 @@ struct Node{
 class Solution
 {
     public:
+        
         /*You are required to complete below method */
-        void solve(Node* root,int &sum){
-            if(root == NULL){
+        void solve (Node *root,int & sum){
+            if(root==NULL){
                 return ;
             }
-            if(root->left==NULL && root->right==NULL){
+            if(root->left ==NULL && root->right==NULL){
                 sum=sum+root->data;
             }
             solve(root->left,sum);
             solve(root->right,sum);
-            
         }
         int sumOfLeafNodes(Node *root ){
-             /*Your code here */
-             int sum=0;
-              solve(root,sum);
-              return sum;
+           int sum=0;
+           solve(root,sum);
+           return sum;
         }
 };
 
