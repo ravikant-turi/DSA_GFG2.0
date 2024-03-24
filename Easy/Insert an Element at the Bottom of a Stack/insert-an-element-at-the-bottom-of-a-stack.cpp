@@ -11,20 +11,19 @@ using namespace std;
 class Solution{
 public:
     stack<int> insertAtBottom(stack<int> st,int x){
-     stack<int> s;
-     while(!st.empty()){
-         int temp=st.top();
-         s.push(temp);
-         st.pop();
-        
-     }
-     st.push(x);
-     while(!s.empty()){
-         int temp=s.top();
-         st.push(temp);
-         s.pop();
-     }
-     return st;
+        stack<int> ans;
+        while(!st.empty()){
+            int temp=st.top();
+            ans.push(temp);
+            st.pop();
+        }
+        st.push(x);
+         while(!ans.empty()){
+             int temp=ans.top();
+            st.push(temp);
+            ans.pop();
+        }
+        return st;
     }
 };
 
