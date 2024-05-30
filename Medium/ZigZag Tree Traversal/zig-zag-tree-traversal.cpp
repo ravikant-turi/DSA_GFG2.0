@@ -102,39 +102,54 @@ struct Node {
 
 class Solution{
     public:
+    vector<int> solve(Node *root){
+        queue<Node *> q;
+        vector<int> res;
+        q.push(root);
+        bool leftToRight=true;
+        while(!q.empty()){
+            
+            int size=q.size();
+            
+            vector<int> ans(size);
+            
+            for(int i=0;i<size;i++){
+                
+                Node *front=q.front();
+                q.pop();
+                
+                int index;
+                
+                if(leftToRight){
+                    index=i;
+                }
+                else{
+                    index=size-i-1;
+                }
+                ans[index]=front->data;
+                if(front->left){
+                    q.push(front->left);
+                }
+                if(front->right){
+                    q.push(front->right);
+                }
+                
+            }
+            
+                
+            for(auto el: ans){
+                res.push_back(el);
+            }
+            leftToRight=!leftToRight;
+            
+        }
+        return res;
+    }
     //Function to store the zig zag order traversal of tree in a list.
     vector <int> zigZagTraversal(Node* root)
     {
     	// Code here
-    	 	vector<int> res;
-    	if(root==NULL){
-    	    return res;
-    	}
-    	queue<Node*>q;
-    	q.push(root);
-    	bool leftToright=true;
-    	while(!q.empty()){
-    	    int size=q.size();
-    	    vector<int>ans(size);
-    	    for(int i=0;i<size;i++){
-    	       Node *frontNode=q.front();
-    	       q.pop();
-    	       int index=leftToright ? i : size-i-1;
-    	       ans[index]=frontNode->data;
-    	       if(frontNode->left){
-    	          q.push(frontNode->left);
-    	       } 
-    	       if(frontNode->right){
-    	          q.push(frontNode->right);
-    	        } 
-    	    }
-    	    leftToright=!leftToright;
-    	    for(int i=0;i<ans.size();i++){
-    	        res.push_back(ans[i]);
-    	    }
-    	   
-    	}
-    	return res;
+    	return solve(root);
     }
 };
 
