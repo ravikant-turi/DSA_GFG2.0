@@ -38,10 +38,10 @@ class Solution {
           if(arr[i-1]<arr[i]){
               count++;
               
-              ans=Math.max(ans,count);
           }
           
           else{
+              ans=Math.max(ans,count);
               count=0;
           }
           
