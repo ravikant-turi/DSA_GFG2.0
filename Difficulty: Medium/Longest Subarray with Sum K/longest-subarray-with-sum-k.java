@@ -32,32 +32,55 @@ class Main {
 // User function Template for Java
 
 class Solution {
-    public int longestSubarray(int[] arr, int k) {
+    public int longestSubarray(int[] A, int K) {
+        
         // code here
-        HashMap<Integer,Integer> mp=new HashMap<>();
-        mp.put(0,0);
+         HashMap<Integer,Integer> map=new HashMap<>();
+         int N=A.length;
         int sum=0;
-        int ans=0;
-        for(int i=0;i<arr.length;i++){
-            
-            sum=sum+arr[i];
-            
-            if(sum==k){
-               ans=Math.max(ans,i+1); 
+        int ansLength=0;
+        
+        for(int i=0;i<N;i++){
+            sum+=A[i];
+            if(sum==K){
+                ansLength=i+1;
             }
-            
-            int index=sum-k;
-            
-            if(mp.containsKey(index)){
-               
-               ans=Math.max(ans,i-mp.get(index)); 
-            }
-            if(mp.containsKey(sum)==false){
+            if(map.containsKey(sum-K)){
+                int res=map.get(sum-K);
+                int len=i-res;
+                if(ansLength<len){
+                    ansLength=len;
+                }
                 
-                 mp.put(sum,i);
             }
-            
+            if(map.containsKey(sum)==false)
+            map.put(sum,i);
         }
-        return ans;
+        return ansLength;
+    //     HashMap<Integer,Integer> mp=new HashMap();
+        
+    //   int ans=0;
+    //   int sum=0;
+    //   for(int i=0;i<arr.length;i++){
+           
+    //       sum+=arr[i];
+           
+    //       if(sum-k==0){
+    //           ans=Math.max(ans,i+1);
+    //       }
+    //       if(mp.containsKey(sum-k)){
+    //           ans=Math.max(ans,mp.get(sum-k));
+    //       }
+           
+    //       if(mp.containsKey(sum)==false){
+    //           mp.put(sum,i);
+    //       }
+    //   }
+    //   return ans;
+        
+        
+        
+        
+        
     }
 }
